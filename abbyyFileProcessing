@@ -17,6 +17,8 @@ do
 
   #convert pdf to an images (one page, one image)
   gs -dNOPAUSE -sDEVICE=jpeg -dFirstPage=1 -sOutputFile=output%d.jpg -dJPEGQ=100 -r500 -q $fNameFirst -c quit
+
+  #execute abbyy
   for i in $(ls -v *.jpg) ; do echo "$i $i.txt" ; if [[ -s $FILE ]] ; then abbyyocr11 -ii -fm -if $i -tet UTF8 -f TextUnicodeDefaults -rl Finnish -ptem TextWithPictures -of $i.abbyy.txt ; fi ; done
   cd ..
 done
